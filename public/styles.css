@@ -1,0 +1,410 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Poppins", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    background-color: #433D37;
+    color: #f0f0f0;
+}
+
+gem-player {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Fade-in transition for canvas */
+.gem-canvas {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.gem-canvas.loaded {
+    opacity: 1;
+}
+
+/* Text overlay container */
+.text-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 1.5%;
+    text-align: left;
+    margin-left: 2em;
+    pointer-events: none;
+    z-index: 20;
+    animation: fadeIn 1s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.text-overlay div {
+    font-size: 1em;
+}
+
+.artist-name {
+    font-size: 1.5em !important;
+    font-weight: 500;
+    margin-bottom: -0.2em;
+    opacity: 0.8;
+}
+
+.album-title {
+    font-size: 1em !important;
+    font-weight: 300;
+    opacity: 0.4;
+}
+
+.published {
+    position: absolute;
+    bottom: 4%;
+    text-align: left;
+    pointer-events: none;
+    z-index: 10;
+    font-size: 0.74em !important;
+    opacity: 0.4;
+}
+
+#panel-overlay {
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(67, 61, 56, 0.5);
+    justify-content: center;
+    align-items: center;
+    font-size: 4em !important;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 64px rgba(255, 255, 255, 0.7);
+    letter-spacing: 10;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(65px);
+    transition: 0.5s;
+}
+
+.kern-pair {
+    display: inline-block;
+    letter-spacing: -0.15em;
+    margin-right: 0.05em;
+}
+
+/* UnlockTest Component Styles */
+.unlock-button-container {
+    position: absolute;
+    bottom: 92px;  /* Fixed 95px spacing from bottom for all non-mobile screens */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 1.0s ease;
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+@media screen and (max-width: 640px) {
+    .unlock-button-container {
+        bottom: 50px;
+        width: 90%;
+    }
+}
+
+.unlock-message {
+    font-family: Poppins, sans-serif;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    max-width: 440px;
+    line-height: 1.4;
+    font-weight: 400;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+@media screen and (max-width: 640px) {
+    .unlock-message {
+        font-size: 13px;
+    }
+}
+
+.unlock-button {
+    padding: 12px 24px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 0 none;
+    border-radius: 88px;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: Poppins, sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.unlock-button:hover {
+	padding: 18px 32px;
+	margin-bottom: -6px;
+    background-color: rgba(255, 255, 255, 0.24);
+}
+
+.unlock-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(67, 61, 56, 0.5);
+    backdrop-filter: blur(20px);
+    display: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 200;
+    cursor: pointer;
+}
+
+.unlock-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    pointer-events: none;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.unlock-heading {
+    font-size: 40px;
+    margin: 0 0 1em 0;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: white;
+}
+
+@media screen and (max-width: 640px) {
+    .unlock-heading {
+        font-size: 32px;
+		margin: 0 0 0 0;
+    }
+}
+
+
+.unlock-title {
+    font-size: 21px;
+    margin: 0.5em 0 0 0;
+    font-weight: 500;
+    color: white;
+    max-width: 30em;
+}
+
+.unlock-description {
+    font-size: 21px;
+    opacity: 0.8;
+    margin: 1em 0 0 0;
+    font-weight: 200;
+    color: white;
+}
+
+@media screen and (max-width: 640px) {
+    .unlock-title{
+		margin: 0 0 0 0;
+		font-size: 16px;
+	}
+
+	.unlock-description {
+		font-size: 16px;
+	}
+}
+
+.unlock-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    animation: sway 8s ease-in-out infinite;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 640px) {
+	.unlock-image-container {
+		max-width: 320px;
+	}
+}
+
+.unlock-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+    114deg,
+        rgba(255, 255, 255, 0.0) 0%,
+        rgba(255, 255, 255, 0.15) 40%,
+		rgba(255, 255, 255, 0.20) 50%,
+		rgba(255, 255, 255, 0.15) 70%,
+        rgba(255, 255, 255, 0.0) 100%
+    );
+    background-size: 200% 100%;
+    pointer-events: none;
+    z-index: 3;
+    animation: lighting 8s ease-in-out infinite;
+}
+
+.unlock-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: block;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    position: relative;
+    z-index: 2;
+    border-radius: 8px;
+}
+
+.particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes sway {
+    0% {
+        transform: perspective(3000px) rotateY(-24deg);
+    }
+    50% {
+        transform: perspective(3000px) rotateY(24deg);
+    }
+    100% {
+        transform: perspective(3000px) rotateY(-24deg);
+    }
+}
+
+@keyframes lighting {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Make sure all content elements don't capture clicks */
+.unlock-heading,
+.unlock-image-container,
+.unlock-title,
+.unlock-description {
+    pointer-events: none;
+} 
+
+/* Flip in Y axis animation */
+@keyframes flip-in-y {
+    0% {
+        opacity: 0;
+        transform: rotateY(90deg);
+    }
+    60% {
+        opacity: 1;
+        transform: rotateY(-30deg);
+    }
+    80% {
+        transform: rotateY(15deg);
+    }
+    90% {
+        transform: rotateY(-7deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateY(0deg);
+    }
+}
+
+/* Flip in X axis animation */
+@keyframes flip-in-x {
+    0% {
+        opacity: 0;
+        transform: rotateX(-90deg);
+    }
+    50% {
+        opacity: 1;
+        transform: rotateX(20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+}
+
+/* Diagonal flip animation */
+@keyframes flip-in-diagonal {
+    0% {
+        opacity: 0;
+        transform: rotate3d(1, 1, 0, 90deg);
+    }
+    50% {
+        opacity: 1;
+        transform: rotate3d(1, 1, 0, -20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate3d(1, 1, 0, 0deg);
+    }
+}
+
+/* Fade in animation for button */
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+} 
