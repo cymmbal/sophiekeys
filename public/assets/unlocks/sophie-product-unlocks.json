@@ -28,11 +28,11 @@
             "callback": "unlockPhase4"
         },
 		{
-			"message": "Gems are a deeply personal way to tell the story of an artist and their album.",
+			"message": "Gems give artists a deeply personal way to tell the story of their album.",
 			"buttonLabel" : "Show me",
             "heading": " ",
             "image": "./assets/unlocks/sophie-full.jpg",
-            "title": "And the more you explore that story, the more personal your Gem becomes.",
+            "title": "And as fans dig deeper into that story, the more personal their Gem becomes.",
 			"description": "See completed Gem",
             "callback": "unlockPhase5"
         },
