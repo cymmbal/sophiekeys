@@ -19,11 +19,11 @@
             "callback": "unlockPhase3"
         },
 		{
-			"message": "Visiting storied locations <b><i>with friends</i></b> can unlock a surprise element for each of you.",
+            "message": "Gems are full of surprise easter eggs. Visiting storied locations <b><i>with friends</i></b> might unlock a new element.",
 			"buttonLabel" : "Show me",
             "heading": "FOUND A SPECIAL LOCATION",
             "image": "./assets/unlocks/sophie-heaven.jpg",
-            "title": "Visiting Heaven's alley with friends unlocks a special element.",
+            "title": "Visiting Heaven's alley with friends unlocks a surprise element for each of you.",
 			"description": "Tap to add",
             "callback": "unlockPhase4"
         },
