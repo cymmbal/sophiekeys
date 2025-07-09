@@ -194,7 +194,7 @@ export class UnlockTest {
         // Message element
         const msg = document.createElement('div');
         msg.classList.add('unlock-message');
-        msg.innerHTML = "Gems are interactive. Try <b><i>dragging</i></b> this one around.";
+        msg.innerHTML = "This is an interactive demo.<br><b><i>Drag</i></b> the Gem around to start it.";
         // Apply dynamic font color from body element
         msg.style.color = bodyColor;
         this.initialMessageContainer.appendChild(msg);

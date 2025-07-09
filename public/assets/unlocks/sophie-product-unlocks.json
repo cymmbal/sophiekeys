@@ -1,7 +1,7 @@
 {
     "unlocks": [
         {
-			"message": "Fans <b><i>personalize</i></b> their Gems through interactions.<br>Let's see a few examples.",
+			"message": "Gems are <b><i>personalized</i></b> through interactions.<br>Let's see a few examples.",
 			"buttonLabel" : "Show me",
             "heading": "LISTENED FOR 1,000 MINUTES",
             "image": "./assets/unlocks/sophie-slide.jpg",
@@ -23,7 +23,7 @@
 			"buttonLabel" : "Show me",
             "heading": "FOUND A SPECIAL LOCATION",
             "image": "./assets/unlocks/sophie-heaven.jpg",
-            "title": "Walking down Heaven's alley with friends unlocks a special element.",
+            "title": "Visiting Heaven's alley with friends unlocks a special element.",
 			"description": "Tap to add",
             "callback": "unlockPhase4"
         },
@@ -37,7 +37,7 @@
             "callback": "unlockPhase5"
         },
         {
-            "message": "Gems can take many forms.<br>Let's see a few more.",
+            "message": "Gems can take many forms.<br>Here's a few more.",
             "buttonLabel": "View more Gems",
             "url": "https://docsend.com/view/98n33rbezvn7byej"
         }
