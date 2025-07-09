@@ -462,7 +462,7 @@ export class UnlockTest {
                     const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
                     
                     // Use longer delay for final unlock, normal delay for others
-                    const delay = isFinalUnlock ? 8000 : 500;
+                    const delay = isFinalUnlock ? 6000 : 500;
                     
                     setTimeout(() => {
                         this.fadeInButton();
