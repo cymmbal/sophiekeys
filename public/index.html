@@ -83,7 +83,7 @@
         MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
     
         // Initialize with your project token
-        mixpanel.init('475cc786eb389463ae2d8c5b4e989c86');
+        mixpanel.init('475cc786eb389463ae2d8c5b4e989c86', { ignore_dnt: true });
     
         // Track pageview
         mixpanel.track('Page View', {

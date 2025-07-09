@@ -457,11 +457,17 @@ export class UnlockTest {
                 if (this.unlockState < this.unlockConfig.unlocks.length) {
                     // Create new button container for next unlock
                     this.createButtonContainer();
-                    // Fade in button container after 0.5 second
+                    
+                    // Check if this is the final unlock (last one in the array)
+                    const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
+                    
+                    // Use longer delay for final unlock, normal delay for others
+                    const delay = isFinalUnlock ? 8000 : 500;
+                    
                     setTimeout(() => {
                         this.fadeInButton();
                         this.animateMessageAndButton();
-                    }, 500);
+                    }, delay);
                 }
             }
         }, 300);
@@ -510,13 +516,10 @@ export class UnlockTest {
                 window.location.href = currentUnlock.url;
                 return;
             }
-            // Mixpanel event tracking for first and second unlocks
+            // Mixpanel event tracking for every unlock
             if (typeof mixpanel !== 'undefined' && mixpanel.track) {
-                if (this.unlockState === 0) {
-                    mixpanel.track('buttonclick1');
-                } else if (this.unlockState === 1) {
-                    mixpanel.track('buttonclick2');
-                }
+                const eventName = `buttonclick${this.unlockState + 1}`;
+                mixpanel.track(eventName);
             }
             this.handleUnlock();
         });

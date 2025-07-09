@@ -1,43 +1,43 @@
 {
     "unlocks": [
         {
-			"message": "Gems are <b><i>personalized</i></b> in multiple ways.<br>One of them is through listening.",
+			"message": "Fans <b><i>personalize</i></b> their Gems through interactions.<br>Let's see a few examples.",
 			"buttonLabel" : "Show me",
-            "heading": "PLAY PRODUCT 10 TIMES",
+            "heading": "LISTENED FOR 1,000 MINUTES",
             "image": "./assets/unlocks/sophie-slide.jpg",
-            "title": "Streaming the album unlocks new Gem elements.",
+            "title": "Streaming PRODUCT unlocks a new element for your Gem.",
 			"description": "Tap to add to Gem",
             "callback": "unlockPhase2"
         },
 		{
-			"message": "Real-world interactions are also possible, like finding secret codes on hidden objects.",
+			"message": "Beyond streaming, real-world interactions are also possible, like discovering hidden objects.",
 			"buttonLabel" : "Show me",
             "heading": "FOUND A HIDDEN OBJECT",
             "image": "./assets/unlocks/sophie-shop.jpg",
-            "title": "Finding the secret code on a hidden pool toy at Honest Jon's unlocks a rare element.",
+            "title": "The secret code on a hidden pool toy at Honest Jon's unlocks a rare element.",
 			"description": "Tap to add to Gem",
             "callback": "unlockPhase3"
         },
 		{
-			"message": "Visiting storied locations <b><i>with friends</i></b> can unlock surprise Gem elements.",
+			"message": "Visiting storied locations <b><i>with friends</i></b> can unlock a surprise Gem element for both of you.",
 			"buttonLabel" : "Show me",
             "heading": "FOUND A SPECIAL LOCATION",
             "image": "./assets/unlocks/sophie-heaven.jpg",
-            "title": "Walking down Heaven's alley with a friend unlocks a special element for both of you.",
+            "title": "Walking down Heaven's alley with a friend unlocks a special element.",
 			"description": "Tap to add to Gem",
             "callback": "unlockPhase4"
         },
 		{
-			"message": "Gems give artists a deeply personal way to tell the story of their album.",
+			"message": "Gems slowly reveal the story of an artist and their album in a way that is deeply personal.",
 			"buttonLabel" : "Show me",
             "heading": " ",
             "image": "./assets/unlocks/sophie-full.jpg",
-            "title": "And as fans dig deeper into that story, the more personal their Gem becomes.",
+            "title": "And by unlocking new elements, each Gem becomes progressively more unique to its collector.",
 			"description": "See completed Gem",
             "callback": "unlockPhase5"
         },
         {
-            "message": "Gems can take many forms.<br>Tap below to see a few more.",
+            "message": "Gems can take many forms.<br>Let's see a few more.",
             "buttonLabel": "View more Gems",
             "url": "https://docsend.com/view/98n33rbezvn7byej"
         }
