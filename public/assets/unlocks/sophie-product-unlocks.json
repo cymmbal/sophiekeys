@@ -28,13 +28,22 @@
             "callback": "unlockPhase4"
         },
 		{
+			"message": "Fans can also work together on <b><i>community listening</i></b>.<br>Only fans who owned the Gem unlock the element.",
+			"buttonLabel" : "Show me",
+            "heading": "1 MILLION COMMUNITY STREAMS",
+            "image": "./assets/unlocks/elle.jpg",
+            "title": "Current collectors of this Gem reached 1 million minutes of shared listening.",
+			"description": "Tap to add",
+            "callback": "unlockPhase5"
+        },
+		{
 			"message": "Gems reveal the story of an artist and their album in a layered, personal way.",
 			"buttonLabel" : "Show me",
-            "heading": " ",
-            "image": "./assets/unlocks/sophie-full.jpg",
+            "heading": "COMPLETED ALL UNLOCKS",
+            "image": "./assets/unlocks/silicon.jpg",
             "title": "And by unlocking new elements, each Gem becomes progressively more unique to its collector.",
 			"description": "See completed Gem",
-            "callback": "unlockPhase5"
+            "callback": "unlockPhase6"
         },
         {
             "message": "Gems can take many forms.<br>Here's a few more.",
