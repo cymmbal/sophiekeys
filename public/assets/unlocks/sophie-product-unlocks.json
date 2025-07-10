@@ -2,7 +2,7 @@
     "unlocks": [
         {
 			"message": "Gems are <b><i>personalized</i></b> through interactions.<br>Let's see a few examples.",
-			"buttonLabel" : "Show me",
+			"buttonLabel" : "👉 Show me",
             "heading": "LISTENED FOR 1,000 MINUTES",
             "image": "./assets/unlocks/sophie-slide.jpg",
             "title": "Streaming PRODUCT unlocks a new element for your Gem.",
@@ -11,7 +11,7 @@
         },
 		{
 			"message": "Beyond streaming, real-world interactions are also possible, like discovering hidden objects.",
-			"buttonLabel" : "Show me",
+			"buttonLabel" : "👉 Show me",
             "heading": "FOUND A HIDDEN OBJECT",
             "image": "./assets/unlocks/sophie-shop.jpg",
             "title": "The secret code on a hidden pool toy at Honest Jon's unlocks a rare element.",
@@ -20,7 +20,7 @@
         },
 		{
             "message": "Gems are full of surprise easter eggs. Visiting storied locations <b><i>with friends</i></b> might unlock a new element.",
-			"buttonLabel" : "Show me",
+			"buttonLabel" : "👉 Show me",
             "heading": "FOUND A SPECIAL LOCATION",
             "image": "./assets/unlocks/sophie-heaven.jpg",
             "title": "Visiting Heaven's alley with friends unlocks a surprise element for each of you.",
@@ -29,7 +29,7 @@
         },
 		{
 			"message": "Fans can also work together on <b><i>community listening</i></b>.<br>Only fans who owned the Gem unlock the element.",
-			"buttonLabel" : "Show me",
+			"buttonLabel" : "👉 Show me",
             "heading": "1 MILLION COMMUNITY STREAMS",
             "image": "./assets/unlocks/elle.jpg",
             "title": "Collectors of this Gem reached 1 million minutes of shared listening.",
@@ -38,7 +38,7 @@
         },
 		{
 			"message": "Gems reveal the story of an artist and their album in a layered, personal way.",
-			"buttonLabel" : "Show me",
+			"buttonLabel" : "👉 Show me",
             "heading": "COMPLETED ALL UNLOCKS",
             "image": "./assets/unlocks/silicon.jpg",
             "title": "And as you unlock new elements, each Gem becomes progressively more unique to its collector.",
@@ -47,7 +47,7 @@
         },
         {
             "message": "Gems can take many forms.<br>Here's a few more.",
-            "buttonLabel": "View more Gems",
+            "buttonLabel": "👉 View more Gems",
             "url": "https://docsend.com/view/98n33rbezvn7byej"
         }
     ]
