@@ -32,7 +32,7 @@
 			"buttonLabel" : "Show me",
             "heading": "1 MILLION COMMUNITY STREAMS",
             "image": "./assets/unlocks/elle.jpg",
-            "title": "Current collectors of this Gem reached 1 million minutes of shared listening.",
+            "title": "Collectors of this Gem reached 1 million minutes of shared listening.",
 			"description": "Tap to add",
             "callback": "unlockPhase5"
         },
@@ -41,7 +41,7 @@
 			"buttonLabel" : "Show me",
             "heading": "COMPLETED ALL UNLOCKS",
             "image": "./assets/unlocks/silicon.jpg",
-            "title": "And by unlocking new elements, each Gem becomes progressively more unique to its collector.",
+            "title": "And as you unlock new elements, each Gem becomes progressively more unique to its collector.",
 			"description": "See completed Gem",
             "callback": "unlockPhase6"
         },

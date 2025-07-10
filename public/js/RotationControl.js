@@ -8,7 +8,7 @@ export class RotationControl {
         this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         
         // Add mobile sensitivity multiplier
-        this.mobileSensitivityMultiplier = 1.22;
+        this.mobileSensitivityMultiplier = 1.08;
 
         // Track active pointers for iOS
         this.activePointers = new Set();
