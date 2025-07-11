@@ -39,10 +39,10 @@
 		{
 			"message": "Piece by piece, your Gem becomes a personal reflection of your experiences with the album.",
 			"buttonLabel" : "👉 Show me",
-            "heading": "BONUS ELEMENT UNLOCKED",
+            "heading": "SECRET ELEMENT UNLOCKED",
             "image": "./assets/unlocks/silicon.jpg",
-            "title": "You've unlocked all available elements for this Gem",
-			"description": "View Gem",
+            "title": "Completing a Gem might unlock a bonus element",
+			"description": "View full Gem",
             "callback": "unlockPhase6"
         },
         {
