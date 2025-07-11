@@ -32,17 +32,17 @@
 			"buttonLabel" : "👉 Show me",
             "heading": "1 MILLION COMMUNITY STREAMS",
             "image": "./assets/unlocks/elle.jpg",
-            "title": "Fans who owned the Gem before this milestone was reached unlock a limited element",
+            "title": "Fans who owned the Gem before this milestone unlock a limited element",
 			"description": "Tap to add",
             "callback": "unlockPhase5"
         },
 		{
 			"message": "Piece by piece, your Gem becomes a personal reflection of your experiences with the album.",
 			"buttonLabel" : "👉 Show me",
-            "heading": "NEW ELEMENT UNLOCKED",
+            "heading": "BONUS ELEMENT UNLOCKED",
             "image": "./assets/unlocks/silicon.jpg",
-            "title": "You've unlocked all elements of this Gem",
-			"description": "View completed Gem",
+            "title": "You've unlocked all available elements for this Gem",
+			"description": "View Gem",
             "callback": "unlockPhase6"
         },
         {
