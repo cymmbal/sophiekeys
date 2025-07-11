@@ -221,19 +221,26 @@ export class UnlockTest {
         }, 350);
     }
 
-    // Helper to animate message and button in sequence (not for initial message)
+        // Helper to animate message and button in sequence (not for initial message)
     animateMessageAndButton() {
         if (!this.message || !this.button) return;
         // Reset animations
         this.message.style.animation = 'none';
         this.button.style.animation = 'none';
+        
+        // Check if this is the final unlock (last one in the array)
+        const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
+        
+        // Use longer delay for final unlock button, normal delay for others
+        const buttonDelay = isFinalUnlock ? 13000 : 4000;
+        
         // Animate message after 1s
         setTimeout(() => {
             this.message.style.animation = 'flip-in-y 4s ease-in-out forwards';
-            // Animate button after message animation (4s)
+            // Animate button after message animation
             setTimeout(() => {
                 this.button.style.animation = 'fade-in 1s ease-out forwards';
-            }, 4000);
+            }, buttonDelay);
         }, 1000);
     }
 
@@ -267,10 +274,16 @@ export class UnlockTest {
             // --- Start message animation ---
             this.message.style.animation = 'flip-in-y 4s ease-in-out forwards';
 
-            // --- Start button animation after 4s ---
+            // Check if this is the final unlock (last one in the array)
+            const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
+            
+            // Use longer delay for final unlock button, normal delay for others
+            const buttonDelay = isFinalUnlock ? 13000 : 4000;
+
+            // --- Start button animation ---
             setTimeout(() => {
                 this.button.style.animation = 'fade-in 1s ease-out forwards';
-            }, 4000);
+            }, buttonDelay);
         }
     }
 
@@ -458,11 +471,8 @@ export class UnlockTest {
                     // Create new button container for next unlock
                     this.createButtonContainer();
                     
-                    // Check if this is the final unlock (last one in the array)
-                    const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
-                    
-                    // Use longer delay for final unlock, normal delay for others
-                    const delay = isFinalUnlock ? 6000 : 500;
+                    // Use same delay for all unlocks
+                    const delay = 500;
                     
                     setTimeout(() => {
                         this.fadeInButton();

@@ -1,7 +1,7 @@
 {
     "unlocks": [
         {
-			"message": "Gems are <b><i>personalized</i></b> through interactions.<br>Let's see a few examples.",
+			"message": "Gems are <b><i>personalized</i></b> by your experiences.<br>Let's see a few examples.",
 			"buttonLabel" : "👉 Show me",
             "heading": "LISTENED FOR 1,000 MINUTES",
             "image": "./assets/unlocks/sophie-slide.jpg",
@@ -19,7 +19,7 @@
             "callback": "unlockPhase3"
         },
 		{
-            "message": "Gems are full of surprise easter eggs. Visiting storied locations <b><i>with friends</i></b> might unlock a new element.",
+            "message": "Gems are full of easter eggs. Visiting storied locations <b><i>with friends</i></b> might unlock a new element.",
 			"buttonLabel" : "👉 Show me",
             "heading": "FOUND A SPECIAL LOCATION",
             "image": "./assets/unlocks/sophie-heaven.jpg",
@@ -28,27 +28,27 @@
             "callback": "unlockPhase4"
         },
 		{
-			"message": "Fans can also work together on <b><i>community listening</i></b>.<br>Only fans who owned the Gem unlock the element.",
+			"message": "Fans can also work together on <b><i>community listening</i></b>.",
 			"buttonLabel" : "👉 Show me",
             "heading": "1 MILLION COMMUNITY STREAMS",
             "image": "./assets/unlocks/elle.jpg",
-            "title": "Collectors of this Gem reached 1 million minutes of shared listening.",
+            "title": "Owning the Gem before this milestone was reached unlocks a limited element.",
 			"description": "Tap to add",
             "callback": "unlockPhase5"
         },
 		{
-			"message": "Gems reveal the story of an artist and their album in a layered, personal way.",
+			"message": "As more elements are unlocked, a Gem becomes increasingly <b><i>personal</i></b> to its collector.",
 			"buttonLabel" : "👉 Show me",
-            "heading": "COMPLETED ALL UNLOCKS",
+            "heading": "NEW ELEMENT UNLOCKED",
             "image": "./assets/unlocks/silicon.jpg",
-            "title": "And as you unlock new elements, each Gem becomes progressively more unique to its collector.",
-			"description": "See completed Gem",
+            "title": "You've unlocked all elements of this Gem.",
+			"description": "Tap to add",
             "callback": "unlockPhase6"
         },
         {
-            "message": "Gems can take many forms.<br>Here's a few more.",
-            "buttonLabel": "👉 View more Gems",
-            "url": "https://docsend.com/view/98n33rbezvn7byej"
+            "message": "Their Gem becomes a living reflection of their experiences with the album.",
+            "buttonLabel": "🔁 Restart demo",
+            "url": "https://docsend.com/view/7a9j6fysyke67udu"
         }
     ]
 } 
