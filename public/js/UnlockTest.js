@@ -174,7 +174,7 @@ export class UnlockTest {
         const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
         
         // Use longer delay for final unlock button, normal delay for others
-        const buttonDelay = isFinalUnlock ? 5000 : 4000;
+        const buttonDelay = isFinalUnlock ? 4000 : 4000;
         
         // Animate message after 1s
         setTimeout(() => {

@@ -37,7 +37,7 @@
             "callback": "unlockPhase5"
         },
 		{
-			"message": "Piece by piece, your Gem becomes a personal reflection of your experiences with the album.",
+			"message": "Piece by piece, a Gem becomes increasingly personal to its collector.",
 			"buttonLabel" : "👉 Show me",
             "heading": "SECRET ELEMENT UNLOCKED",
             "image": "./assets/unlocks/silicon.jpg",
@@ -46,7 +46,7 @@
             "callback": "unlockPhase6"
         },
         {
-            "message": " ",
+            "message": "And in the end, your Gem is a reflection of your experiences with the album.",
             "buttonLabel": "🔁 Restart demo",
             "url": "https://docsend.com/view/7a9j6fysyke67udu"
         }
