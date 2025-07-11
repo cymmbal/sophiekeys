@@ -37,16 +37,16 @@
             "callback": "unlockPhase5"
         },
 		{
-			"message": "Piece by piece, a Gem becomes increasingly personal to its collector.",
+			"message": "Piece by piece, a Gem becomes<br><b><i>increasingly personal</i></b> to its collector.",
 			"buttonLabel" : "👉 Show me",
             "heading": "SECRET ELEMENT UNLOCKED",
             "image": "./assets/unlocks/silicon.jpg",
-            "title": "Completing a Gem might unlock a bonus element",
+            "title": "Unlocking multiple elements might reveal a secret bonus",
 			"description": "View full Gem",
             "callback": "unlockPhase6"
         },
         {
-            "message": "And in the end, your Gem is a reflection of your experiences with the album.",
+            "message": "Your Gem reflects your experiences with the album.",
             "buttonLabel": "🔁 Restart demo",
             "url": "https://docsend.com/view/7a9j6fysyke67udu"
         }
