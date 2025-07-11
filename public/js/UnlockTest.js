@@ -122,16 +122,8 @@ export class UnlockTest {
         this.unlockConfig = null;
         this.preloadedImages = {};  // Store preloaded images
         
-        // --- Initial Message Overlay Logic ---
-        this.initialMessageShown = false;
-        this.initialMessageContainer = null;
-        this.initialMessageFadeTimeout = null;
-        this.unlockSequenceStarted = false;
-
-        // Show initial message after 1000ms delay
-        setTimeout(() => {
-            this.showInitialMessage();
-        }, 1000);
+        // Start unlock sequence immediately
+        this.unlockSequenceStarted = true;
 
         // Initialize unlock configuration and overlay
         this.init();
@@ -160,66 +152,16 @@ export class UnlockTest {
             // Create overlay
             this.createOverlay();
 
-            const canvas = this.gemPlayer.querySelector('canvas');
-            // Listen for user interaction with the spline scene (rotationstart on canvas)
-            if (canvas) {
-                this._handleFirstInteraction = () => {
-                    if (!this.initialMessageShown || this.unlockSequenceStarted) return;
-                    this.unlockSequenceStarted = true;
-                    this.fadeOutInitialMessage();
-                    // After fade out (350ms), wait 2s, then start unlock sequence
-                    setTimeout(() => {
-                        this.startUnlockSequence();
-                    }, 2350); // 350ms fade + 2000ms wait
-                    canvas.removeEventListener('rotationstart', this._handleFirstInteraction);
-                };
-                canvas.addEventListener('rotationstart', this._handleFirstInteraction);
-            }
+            // Start unlock sequence immediately after initialization
+            setTimeout(() => {
+                this.startUnlockSequence();
+            }, 1000); // 1 second delay to let page load
         } catch (error) {
             console.error('Error loading unlock configuration:', error);
         }
     }
 
-    showInitialMessage() {
-        if (this.initialMessageShown) return;
-        this.initialMessageShown = true;
-        // Create container styled like unlock overlay
-        this.initialMessageContainer = document.createElement('div');
-        this.initialMessageContainer.classList.add('unlock-button-container');
-        this.initialMessageContainer.style.opacity = '0';
-        this.initialMessageContainer.style.display = 'flex';
-        // Get dynamic font color from body element
-        const bodyColor = getComputedStyle(document.body).color;
-        
-        // Message element
-        const msg = document.createElement('div');
-        msg.classList.add('unlock-message');
-        msg.innerHTML = "This is an interactive demo.<br><b><i>Drag</i></b> the Gem around to start it.";
-        // Apply dynamic font color from body element
-        msg.style.color = bodyColor;
-        this.initialMessageContainer.appendChild(msg);
-        // Add to gem player
-        this.gemPlayer.appendChild(this.initialMessageContainer);
-        // Fade in with longer delay and animation
-        setTimeout(() => {
-            this.initialMessageContainer.style.transition = 'opacity 1.0s ease';
-            this.initialMessageContainer.style.opacity = '1';
-            msg.style.animation = 'flip-in-y 4s ease-in-out forwards';
-        }, 2000);
-    }
 
-    fadeOutInitialMessage() {
-        if (!this.initialMessageContainer) return;
-        this.initialMessageContainer.style.transition = 'opacity 0.35s ease';
-        this.initialMessageContainer.style.opacity = '0';
-        // Remove from DOM after fade
-        setTimeout(() => {
-            if (this.initialMessageContainer && this.initialMessageContainer.parentNode) {
-                this.initialMessageContainer.parentNode.removeChild(this.initialMessageContainer);
-                this.initialMessageContainer = null;
-            }
-        }, 350);
-    }
 
         // Helper to animate message and button in sequence (not for initial message)
     animateMessageAndButton() {
@@ -232,7 +174,7 @@ export class UnlockTest {
         const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
         
         // Use longer delay for final unlock button, normal delay for others
-        const buttonDelay = isFinalUnlock ? 13000 : 4000;
+        const buttonDelay = isFinalUnlock ? 6000 : 4000;
         
         // Animate message after 1s
         setTimeout(() => {
@@ -250,7 +192,7 @@ export class UnlockTest {
         setTimeout(() => {
             this.fadeInButton();
             this.animateMessageAndButton();
-        }, 500);
+        }, 200);
     }
 
     fadeInButton() {
@@ -528,7 +470,7 @@ export class UnlockTest {
             }
             // Mixpanel event tracking for every unlock
             if (typeof mixpanel !== 'undefined' && mixpanel.track) {
-                const eventName = `buttonclick${this.unlockState + 1}`;
+                const eventName = `sophie${this.unlockState + 1}`;
                 mixpanel.track(eventName);
             }
             this.handleUnlock();

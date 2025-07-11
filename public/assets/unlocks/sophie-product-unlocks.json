@@ -37,16 +37,16 @@
             "callback": "unlockPhase5"
         },
 		{
-			"message": "As more elements are unlocked, a Gem becomes increasingly <b><i>personal</i></b> to its collector.",
+			"message": "Piece by piece, your Gem becomes a personal reflection of your experiences with the album.",
 			"buttonLabel" : "👉 Show me",
             "heading": "NEW ELEMENT UNLOCKED",
             "image": "./assets/unlocks/silicon.jpg",
             "title": "You've unlocked all elements of this Gem",
-			"description": "Tap to add",
+			"description": "View completed Gem",
             "callback": "unlockPhase6"
         },
         {
-            "message": "Their Gem becomes a living reflection of their experiences with the album.",
+            "message": " ",
             "buttonLabel": "🔁 Restart demo",
             "url": "https://docsend.com/view/7a9j6fysyke67udu"
         }
