@@ -1,8 +1,8 @@
 {
     "unlocks": [
         {
-			"message": "Gems are <b><i>personalized</i></b> by your experiences.<br>Let's see a few examples.",
-			"buttonLabel" : "👉 Show me",
+			"message": "Gems are <b><i>personalized</i></b> by your experiences.<br>Here are 5 possibilities.",
+			"buttonLabel" : "👉 Layer 1",
             "heading": "LISTENED FOR 1,000 MINUTES",
             "image": "./assets/unlocks/sophie-slide.jpg",
             "title": "Streaming PRODUCT unlocks a new element for your Gem",
@@ -11,7 +11,7 @@
         },
 		{
 			"message": "Real-world interactions are also possible, like discovering hidden objects.",
-			"buttonLabel" : "👉 Show me",
+			"buttonLabel" : "👉 Layer 2",
             "heading": "FOUND HIDDEN OBJECT",
             "image": "./assets/unlocks/sophie-shop.jpg",
             "title": "The secret code on a pool toy at Honest Jon's unlocks a rare element",
@@ -20,7 +20,7 @@
         },
 		{
             "message": "Gems are full of easter eggs. Visiting storied locations <b><i>with friends</i></b> might unlock a new element.",
-			"buttonLabel" : "👉 Show me",
+			"buttonLabel" : "👉 Layer 3",
             "heading": "FOUND SPECIAL LOCATION",
             "image": "./assets/unlocks/sophie-heaven.jpg",
             "title": "Visiting Heaven's alley with friends unlocks a surprise element for each of you",
@@ -29,7 +29,7 @@
         },
 		{
 			"message": "Fans can also work together on <b><i>community listening</i></b>.",
-			"buttonLabel" : "👉 Show me",
+			"buttonLabel" : "👉 Layer 4",
             "heading": "1 MILLION COMMUNITY STREAMS",
             "image": "./assets/unlocks/elle.jpg",
             "title": "Fans who owned the Gem before this milestone unlock a limited element",
@@ -38,7 +38,7 @@
         },
 		{
 			"message": "Piece by piece, a Gem becomes<br><b><i>increasingly personal</i></b> to its collector.",
-			"buttonLabel" : "👉 Show me",
+			"buttonLabel" : "👉 Layer 5",
             "heading": "SECRET ELEMENT UNLOCKED",
             "image": "./assets/unlocks/silicon.jpg",
             "title": "Unlocking multiple elements might reveal a secret bonus",
