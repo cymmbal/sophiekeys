@@ -426,3 +426,43 @@ gem-player {
         opacity: 1;
     }
 } 
+
+.unlock-fake-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: rgba(0, 0, 0, 0.48);
+    border: none;
+    border-radius: 88px;
+    color: #fff;
+    font-family: Poppins, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    transition: none;
+    box-shadow: 0 2px 12px rgba(80,80,120,0.10);
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    overflow: hidden;
+    text-align: center;
+    margin: 32px auto 0 auto;
+    cursor: default;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.18);
+}
+.unlock-fake-button::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 18%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.01) 100%);
+    border-radius: 88px 88px 44px 44px;
+    filter: blur(0.5px);
+    pointer-events: none;
+    z-index: 1;
+}
+.unlock-fake-button span, .unlock-fake-button {
+    position: relative;
+    z-index: 2;
+} 

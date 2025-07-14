@@ -305,7 +305,7 @@ export class UnlockTest {
         
         // Format yesterday's date
         let title = currentUnlock.title;
-        if (title.includes("concert on")) {
+        if (title && title.includes("concert on")) {
             const today = new Date();
             const yesterday = new Date(today);
             yesterday.setDate(yesterday.getDate() - 1);
@@ -316,8 +316,14 @@ export class UnlockTest {
         }
         this.overlayContent.title.textContent = title;
         
-        // Update description based on unlock type
-        this.overlayContent.description.textContent = currentUnlock.url ? "Tap to visit" : currentUnlock.description;
+        // Update description: if 'Tap to add' or '✨ View full Gem', style as fake button
+        if (currentUnlock.description === '✨ Add to Gem' || currentUnlock.description === '✨ View full Gem') {
+            this.overlayContent.description.className = 'unlock-description unlock-fake-button';
+            this.overlayContent.description.innerHTML = currentUnlock.description;
+        } else {
+            this.overlayContent.description.className = 'unlock-description';
+            this.overlayContent.description.textContent = currentUnlock.url ? "Tap to visit" : currentUnlock.description;
+        }
         
         // Use preloaded image if available
         if (this.preloadedImages[currentUnlock.image]) {
