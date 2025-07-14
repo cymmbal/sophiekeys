@@ -176,14 +176,14 @@ export class UnlockTest {
         // Use longer delay for final unlock button, normal delay for others
         const buttonDelay = isFinalUnlock ? 4000 : 4000;
         
-        // Animate message after 1s
+        // Animate message after 0.8s (was 1s)
         setTimeout(() => {
             this.message.style.animation = 'flip-in-y 4s ease-in-out forwards';
             // Animate button after message animation
             setTimeout(() => {
                 this.button.style.animation = 'fade-in 1s ease-out forwards';
             }, buttonDelay);
-        }, 1000);
+        }, 800);
     }
 
     startUnlockSequence() {
@@ -316,8 +316,8 @@ export class UnlockTest {
         }
         this.overlayContent.title.textContent = title;
         
-        // Update description: if '✨ Next example' or '✨ View full Gem', style as fake button
-        if (currentUnlock.description === '✨ Next example' || currentUnlock.description === '✨ View full Gem') {
+        // Update description: if 'Continue' or '✨ View full Gem', style as fake button
+        if (currentUnlock.description === 'Continue' || currentUnlock.description === '✨ View full Gem') {
             this.overlayContent.description.className = 'unlock-description unlock-fake-button';
             this.overlayContent.description.innerHTML = currentUnlock.description;
         } else {

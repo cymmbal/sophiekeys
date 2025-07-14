@@ -6,25 +6,25 @@
             "heading": "LISTENED FOR 1,000 MINUTES",
             "image": "./assets/unlocks/sophie-slide.jpg",
             "title": "Streaming PRODUCT unlocks a new element for your Gem",
-			"description": "✨ Next example",
+			"description": "Continue",
             "callback": "unlockPhase2"
         },
 		{
-			"message": "Beyond streaming, real-world interactions are also possible, like discovering hidden objects.",
+			"message": "Real-world interactions are also possible, like discovering hidden objects.",
 			"buttonLabel" : "👉 Show me",
-            "heading": "FOUND A HIDDEN OBJECT",
+            "heading": "FOUND HIDDEN OBJECT",
             "image": "./assets/unlocks/sophie-shop.jpg",
-            "title": "The secret code on a hidden pool toy at Honest Jon's unlocks a rare element",
-			"description": "✨ Next example",
+            "title": "The secret code on a pool toy at Honest Jon's unlocks a rare element",
+			"description": "Continue",
             "callback": "unlockPhase3"
         },
 		{
             "message": "Gems are full of easter eggs. Visiting storied locations <b><i>with friends</i></b> might unlock a new element.",
 			"buttonLabel" : "👉 Show me",
-            "heading": "FOUND A SPECIAL LOCATION",
+            "heading": "FOUND SPECIAL LOCATION",
             "image": "./assets/unlocks/sophie-heaven.jpg",
             "title": "Visiting Heaven's alley with friends unlocks a surprise element for each of you",
-			"description": "✨ Next example",
+			"description": "Continue",
             "callback": "unlockPhase4"
         },
 		{
@@ -33,7 +33,7 @@
             "heading": "1 MILLION COMMUNITY STREAMS",
             "image": "./assets/unlocks/elle.jpg",
             "title": "Fans who owned the Gem before this milestone unlock a limited element",
-			"description": "✨ Next example",
+			"description": "Continue",
             "callback": "unlockPhase5"
         },
 		{
