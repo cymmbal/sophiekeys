@@ -6,7 +6,7 @@
             "heading": "LISTENED FOR 1,000 MINUTES",
             "image": "./assets/unlocks/sophie-slide.jpg",
             "title": "Streaming PRODUCT unlocks a new element for your Gem",
-			"description": "✨ Add to Gem",
+			"description": "✨ Next example",
             "callback": "unlockPhase2"
         },
 		{
@@ -15,7 +15,7 @@
             "heading": "FOUND A HIDDEN OBJECT",
             "image": "./assets/unlocks/sophie-shop.jpg",
             "title": "The secret code on a hidden pool toy at Honest Jon's unlocks a rare element",
-			"description": "✨ Add to Gem",
+			"description": "✨ Next example",
             "callback": "unlockPhase3"
         },
 		{
@@ -24,7 +24,7 @@
             "heading": "FOUND A SPECIAL LOCATION",
             "image": "./assets/unlocks/sophie-heaven.jpg",
             "title": "Visiting Heaven's alley with friends unlocks a surprise element for each of you",
-			"description": "✨ Add to Gem",
+			"description": "✨ Next example",
             "callback": "unlockPhase4"
         },
 		{
@@ -33,7 +33,7 @@
             "heading": "1 MILLION COMMUNITY STREAMS",
             "image": "./assets/unlocks/elle.jpg",
             "title": "Fans who owned the Gem before this milestone unlock a limited element",
-			"description": "✨ Add to Gem",
+			"description": "✨ Next example",
             "callback": "unlockPhase5"
         },
 		{
