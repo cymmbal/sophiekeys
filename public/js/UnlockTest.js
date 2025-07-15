@@ -316,8 +316,8 @@ export class UnlockTest {
         }
         this.overlayContent.title.textContent = title;
         
-        // Update description: if 'Continue' or '✨ View full Gem', style as fake button
-        if (currentUnlock.description === 'Continue' || currentUnlock.description === '✨ View full Gem') {
+        // Update description: if 'Next unlock', '✨ View full Gem', or 'See what you unlocked', style as fake button
+        if (currentUnlock.description === 'Next unlock' || currentUnlock.description === '✨ View full Gem' || currentUnlock.description === '👉 See what you unlocked') {
             this.overlayContent.description.className = 'unlock-description unlock-fake-button';
             this.overlayContent.description.innerHTML = currentUnlock.description;
         } else {

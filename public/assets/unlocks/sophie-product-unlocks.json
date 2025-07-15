@@ -1,44 +1,44 @@
 {
     "unlocks": [
         {
-			"message": "Gems are <b><i>personalized</i></b> by your experiences.<br>Here are 5 possibilities.",
-			"buttonLabel" : "👉 Layer 1",
+			"message": "Gems are <b><i>personalized</i></b> by your experiences.",
+			"buttonLabel" : "See how",
             "heading": "LISTENED FOR 1,000 MINUTES",
-            "image": "./assets/unlocks/sophie-slide.jpg",
+            "image": "./assets/unlocks/applemusic.jpeg",
             "title": "Streaming PRODUCT unlocks a new element for your Gem",
-			"description": "Continue",
+			"description": "👉 See what you unlocked",
             "callback": "unlockPhase2"
         },
 		{
-			"message": "Real-world interactions are also possible, like discovering hidden objects.",
-			"buttonLabel" : "👉 Layer 2",
+			"message": "Real-world experiences can enhance your Gem.",
+			"buttonLabel" : "Take a look",
             "heading": "FOUND HIDDEN OBJECT",
             "image": "./assets/unlocks/sophie-shop.jpg",
-            "title": "The secret code on a pool toy at Honest Jon's unlocks a rare element",
-			"description": "Continue",
+            "title": "Finding the hidden pool toy at Honest Jon's unlocks a rare element",
+			"description": "👉 See what you unlocked",
             "callback": "unlockPhase3"
         },
 		{
-            "message": "Gems are full of easter eggs. Visiting storied locations <b><i>with friends</i></b> might unlock a new element.",
-			"buttonLabel" : "👉 Layer 3",
+            "message": "Surprise elements are possible too.",
+			"buttonLabel" : "Reveal surprise",
             "heading": "FOUND SPECIAL LOCATION",
             "image": "./assets/unlocks/sophie-heaven.jpg",
             "title": "Visiting Heaven's alley with friends unlocks a surprise element for each of you",
-			"description": "Continue",
+			"description": "👉 See what you unlocked",
             "callback": "unlockPhase4"
         },
 		{
 			"message": "Fans can also work together on <b><i>community listening</i></b>.",
-			"buttonLabel" : "👉 Layer 4",
+			"buttonLabel" : "Show me",
             "heading": "1 MILLION COMMUNITY STREAMS",
-            "image": "./assets/unlocks/elle.jpg",
-            "title": "Fans who owned the Gem before this milestone unlock a limited element",
-			"description": "Continue",
+            "image": "./assets/unlocks/allslides.jpg",
+            "title": "Owning the Gem before this milestone unlocks a limited element",
+			"description": "👉 See what you unlocked",
             "callback": "unlockPhase5"
         },
 		{
 			"message": "Piece by piece, a Gem becomes<br><b><i>increasingly personal</i></b> to its collector.",
-			"buttonLabel" : "👉 Layer 5",
+			"buttonLabel" : "Final step",
             "heading": "SECRET ELEMENT UNLOCKED",
             "image": "./assets/unlocks/silicon.jpg",
             "title": "Unlocking multiple elements might reveal a secret bonus",
@@ -47,7 +47,7 @@
         },
         {
             "message": "Your Gem reflects your experiences with the album.",
-            "buttonLabel": "🔁 Restart demo",
+            "buttonLabel": "Restart demo",
             "url": "https://docsend.com/view/7a9j6fysyke67udu"
         }
     ]
