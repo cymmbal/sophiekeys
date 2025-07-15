@@ -28,7 +28,7 @@
             "callback": "unlockPhase4"
         },
 		{
-			"message": "Fans can also work together on <b><i>community listening</i></b>.",
+			"message": "Fans can also work together on community listening.",
 			"buttonLabel" : "Show me",
             "heading": "1 MILLION COMMUNITY STREAMS",
             "image": "./assets/unlocks/allslides.jpg",
