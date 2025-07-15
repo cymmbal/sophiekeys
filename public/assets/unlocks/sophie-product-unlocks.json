@@ -1,7 +1,7 @@
 {
     "unlocks": [
         {
-			"message": "Gems are <b><i>personalized</i></b> by your experiences.",
+			"message": "Your Gem is <b><i>personalized</i></b> by your experiences.",
 			"buttonLabel" : "See how",
             "heading": "LISTENED FOR 1,000 MINUTES",
             "image": "./assets/unlocks/applemusic.jpeg",
