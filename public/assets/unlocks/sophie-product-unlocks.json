@@ -4,7 +4,7 @@
 			"message": "<b>Your Gem evolves based on your experiences.</b><br>Tap through all 5 levels to see how.",
 			"buttonLabel" : "See Level 1",
             "heading": "LISTENED FOR 1,000 MINUTES",
-            "image": "./assets/unlocks/applemusic.jpeg",
+            "image": "./assets/unlocks/applemusic.jpg",
             "title": "Streaming PRODUCT unlocks a new element for your Gem",
 			"description": "👉 See what you unlocked",
             "callback": "unlockPhase2"
