@@ -123,7 +123,7 @@ export class UnlockTest {
         this.preloadedImages = {};  // Store preloaded images
         
         // Animation timing configuration
-        this.slideUpFadeDuration = '1.5s';
+        this.fadeInDuration = '2.0s';
         
         // Start unlock sequence immediately
         this.unlockSequenceStarted = true;
@@ -143,14 +143,20 @@ export class UnlockTest {
                 return;
             }
 
-            // Preload all unlock images and store references
-            this.unlockConfig.unlocks.forEach(unlock => {
-                const img = new Image();
-                img.onload = () => {
-                    this.preloadedImages[unlock.image] = img;
-                };
-                img.src = unlock.image;
-            });
+                    // Preload all unlock images immediately
+        console.log('Starting image preload for', this.unlockConfig.unlocks.length, 'images...');
+        this.unlockConfig.unlocks.forEach((unlock, index) => {
+            const img = new Image();
+            img.onload = () => {
+                this.preloadedImages[unlock.image] = img;
+                console.log(`✅ Preloaded ${index + 1}/${this.unlockConfig.unlocks.length}: ${unlock.image}`);
+            };
+            img.onerror = () => {
+                console.error(`❌ Failed to preload: ${unlock.image}`);
+            };
+            // Start loading immediately
+            img.src = unlock.image;
+        });
 
             // Create overlay
             this.createOverlay();
@@ -328,36 +334,26 @@ export class UnlockTest {
             this.overlayContent.description.textContent = currentUnlock.url ? "Tap to visit" : currentUnlock.description;
         }
         
-        // Use preloaded image if available
+        // Update image
+        this.overlayContent.image.src = currentUnlock.image;
+        this.overlayContent.image.alt = currentUnlock.title;
+        
+        // Use preloaded image if available (for instant display)
         if (this.preloadedImages[currentUnlock.image]) {
-            this.overlayContent.image.src = this.preloadedImages[currentUnlock.image].src;
-            // Show immediately since it's already loaded
+            console.log('✅ Using preloaded image:', currentUnlock.image);
             this.overlayContent.image.style.opacity = '1';
-            // Reset animation to ensure it starts from the beginning
-            this.overlayContent.imageContainer.style.animation = 'none';
-            this.overlayContent.imageContainer.offsetHeight; // Trigger reflow
-            this.overlayContent.imageContainer.style.animation = 'sway 8s ease-in-out infinite';
-            // Start particle animation
-            if (this.overlayContent.particleSystem) {
-                this.overlayContent.particleSystem.start();
-            }
         } else {
-            // Fallback to original behavior if preloaded image not ready
-            this.overlayContent.image.src = currentUnlock.image;
-            this.overlayContent.image.alt = currentUnlock.title;
-            
-            // Fade in the image after it loads
+            console.log('⏳ Image not preloaded yet:', currentUnlock.image);
+            // Fade in when loaded
             this.overlayContent.image.onload = () => {
                 this.overlayContent.image.style.opacity = '1';
-                // Reset animation to ensure it starts from the beginning
-                this.overlayContent.imageContainer.style.animation = 'none';
-                this.overlayContent.imageContainer.offsetHeight; // Trigger reflow
-                this.overlayContent.imageContainer.style.animation = 'sway 8s ease-in-out infinite';
-                // Start particle animation
-                if (this.overlayContent.particleSystem) {
-                    this.overlayContent.particleSystem.start();
-                }
             };
+        }
+        
+        // Start animations
+        this.overlayContent.imageContainer.style.animation = 'sway 8s ease-in-out infinite';
+        if (this.overlayContent.particleSystem) {
+            this.overlayContent.particleSystem.start();
         }
     }
 
@@ -388,43 +384,30 @@ export class UnlockTest {
         this.overlay.style.display = 'block';
         this.overlay.style.opacity = '1';
         
-        // Start with content slid down and transparent
+        // Start with content transparent
         this.overlayContent.heading.style.opacity = '0';
-        this.overlayContent.heading.style.transform = 'translateY(30px)';
         this.overlayContent.imageContainer.style.opacity = '0';
-        this.overlayContent.imageContainer.style.transform = 'translateY(30px)';
         this.overlayContent.title.style.opacity = '0';
-        this.overlayContent.title.style.transform = 'translateY(30px)';
         this.overlayContent.description.style.opacity = '0';
-        this.overlayContent.description.style.transform = 'translateY(30px)';
         
         // Trigger reflow
         this.overlay.offsetHeight;
         
-        // Start slide-up-fade animation on content
-        this.overlayContent.heading.style.animation = `slide-up-fade ${this.slideUpFadeDuration} ease-out forwards`;
-        this.overlayContent.imageContainer.style.animation = `slide-up-fade ${this.slideUpFadeDuration} ease-out forwards`;
-        this.overlayContent.title.style.animation = `slide-up-fade ${this.slideUpFadeDuration} ease-out forwards`;
-        this.overlayContent.description.style.animation = `slide-up-fade ${this.slideUpFadeDuration} ease-out forwards`;
-        
-        // Ensure image is loaded before blur animation completes
+        // Check if image is preloaded, if not wait for it before starting animation
         const currentUnlock = this.unlockConfig.unlocks[this.unlockState];
+        
         if (this.preloadedImages[currentUnlock.image]) {
-            // Image is already preloaded, show it immediately
-            this.overlayContent.image.style.opacity = '1';
+            // Image is ready, start animation immediately
+            this.startContentAnimation();
         } else {
-            // Image not preloaded, ensure it loads during blur animation
+            // Image not ready, wait for it then start animation
+            console.log('⏳ Waiting for image to load before starting animation...');
             this.overlayContent.image.onload = () => {
-                this.overlayContent.image.style.opacity = '1';
-                // Reset animation to ensure it starts from the beginning
-                this.overlayContent.imageContainer.style.animation = 'none';
-                this.overlayContent.imageContainer.offsetHeight; // Trigger reflow
-                this.overlayContent.imageContainer.style.animation = 'sway 8s ease-in-out infinite';
-                // Start particle animation
-                if (this.overlayContent.particleSystem) {
-                    this.overlayContent.particleSystem.start();
-                }
+                console.log('✅ Image loaded, starting animation');
+                this.startContentAnimation();
             };
+            // Set the image source to trigger loading
+            this.overlayContent.image.src = currentUnlock.image;
         }
     }
 
@@ -551,6 +534,16 @@ export class UnlockTest {
             case 3:  return "rd";
             default: return "th";
         }
+    }
+
+    /**
+     * Start the fade-in animation on all content elements
+     */
+    startContentAnimation() {
+        this.overlayContent.heading.style.animation = `fade-in ${this.fadeInDuration} ease-out forwards`;
+        this.overlayContent.imageContainer.style.animation = `fade-in ${this.fadeInDuration} ease-out forwards`;
+        this.overlayContent.title.style.animation = `fade-in ${this.fadeInDuration} ease-out forwards`;
+        this.overlayContent.description.style.animation = `fade-in ${this.fadeInDuration} ease-out forwards`;
     }
 
     /**
