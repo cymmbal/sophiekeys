@@ -122,6 +122,9 @@ export class UnlockTest {
         this.unlockConfig = null;
         this.preloadedImages = {};  // Store preloaded images
         
+        // Animation timing configuration
+        this.slideUpFadeDuration = '1.5s';
+        
         // Start unlock sequence immediately
         this.unlockSequenceStarted = true;
 
@@ -383,9 +386,46 @@ export class UnlockTest {
         
         // Show overlay
         this.overlay.style.display = 'block';
+        this.overlay.style.opacity = '1';
+        
+        // Start with content slid down and transparent
+        this.overlayContent.heading.style.opacity = '0';
+        this.overlayContent.heading.style.transform = 'translateY(30px)';
+        this.overlayContent.imageContainer.style.opacity = '0';
+        this.overlayContent.imageContainer.style.transform = 'translateY(30px)';
+        this.overlayContent.title.style.opacity = '0';
+        this.overlayContent.title.style.transform = 'translateY(30px)';
+        this.overlayContent.description.style.opacity = '0';
+        this.overlayContent.description.style.transform = 'translateY(30px)';
+        
         // Trigger reflow
         this.overlay.offsetHeight;
-        this.overlay.style.opacity = '1';
+        
+        // Start slide-up-fade animation on content
+        this.overlayContent.heading.style.animation = `slide-up-fade ${this.slideUpFadeDuration} ease-out forwards`;
+        this.overlayContent.imageContainer.style.animation = `slide-up-fade ${this.slideUpFadeDuration} ease-out forwards`;
+        this.overlayContent.title.style.animation = `slide-up-fade ${this.slideUpFadeDuration} ease-out forwards`;
+        this.overlayContent.description.style.animation = `slide-up-fade ${this.slideUpFadeDuration} ease-out forwards`;
+        
+        // Ensure image is loaded before blur animation completes
+        const currentUnlock = this.unlockConfig.unlocks[this.unlockState];
+        if (this.preloadedImages[currentUnlock.image]) {
+            // Image is already preloaded, show it immediately
+            this.overlayContent.image.style.opacity = '1';
+        } else {
+            // Image not preloaded, ensure it loads during blur animation
+            this.overlayContent.image.onload = () => {
+                this.overlayContent.image.style.opacity = '1';
+                // Reset animation to ensure it starts from the beginning
+                this.overlayContent.imageContainer.style.animation = 'none';
+                this.overlayContent.imageContainer.offsetHeight; // Trigger reflow
+                this.overlayContent.imageContainer.style.animation = 'sway 8s ease-in-out infinite';
+                // Start particle animation
+                if (this.overlayContent.particleSystem) {
+                    this.overlayContent.particleSystem.start();
+                }
+            };
+        }
     }
 
     handleOverlayClose() {

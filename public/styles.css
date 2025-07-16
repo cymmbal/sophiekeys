@@ -425,6 +425,18 @@ gem-player {
     100% {
         opacity: 1;
     }
+}
+
+/* Slide up fade in animation for unlock content */
+@keyframes slide-up-fade {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 } 
 
 .unlock-fake-button {
