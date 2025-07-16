@@ -71,6 +71,9 @@ export class GemPlayer extends HTMLElement {
 
 		// Speed of auto-rotation (if 0, auto-rotation is disabled)
 		AUTO_ROTATION_SPEED: -0.0008,
+		
+		// Speed of auto-rotation for mobile devices (if 0, auto-rotation is disabled)
+		MOBILE_AUTO_ROTATION_SPEED: -0.0013,
 
 		// DriftControl values
 
@@ -199,6 +202,13 @@ export class GemPlayer extends HTMLElement {
     }
     
     /**
+     * Check if current device is mobile
+     */
+    isMobile() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    }
+
+    /**
      * Initialize all controls (zoom, drift, orbit)
      */
     initControls() {
@@ -228,7 +238,7 @@ export class GemPlayer extends HTMLElement {
             autoOrientationDelay: GemPlayer.Constants.AUTO_ORIENTATION_DELAY,
             autoOrientationDuration: GemPlayer.Constants.AUTO_ORIENTATION_DURATION,
 			autoRotationDelay: GemPlayer.Constants.AUTO_ROTATION_DELAY,
-			autoRotationSpeed: GemPlayer.Constants.AUTO_ROTATION_SPEED
+			autoRotationSpeed: this.isMobile() ? GemPlayer.Constants.MOBILE_AUTO_ROTATION_SPEED : GemPlayer.Constants.AUTO_ROTATION_SPEED
         });
 
     }
