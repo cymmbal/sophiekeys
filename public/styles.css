@@ -371,7 +371,7 @@ gem-player {
     }
     60% {
         opacity: 1;
-        transform: rotateY(-30deg) scale(1.5);
+        transform: rotateY(-30deg);
     }
     80% {
         transform: rotateY(15deg);
