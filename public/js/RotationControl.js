@@ -510,9 +510,9 @@ export class RotationControl {
         this.isAutoOrienting = false;
         this.hasManualRotation = false; // forcibly allow auto-rotation
 
-        // Directly start auto-rotation after a short delay (e.g., 1s)
-        setTimeout(() => {
+        // Start auto-rotation after the configured delay
+        this.autoControlsTimer = setTimeout(() => {
             this.startAutoRotation();
-        }, 1000);
+        }, this.options.autoRotationDelay);
     }
 } 
