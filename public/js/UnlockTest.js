@@ -334,8 +334,7 @@ export class UnlockTest {
             this.overlayContent.description.textContent = currentUnlock.url ? "Tap to visit" : currentUnlock.description;
         }
         
-        // Update image
-        this.overlayContent.image.src = currentUnlock.image;
+        // Update image - but don't set src yet, we'll do that in handleUnlock with proper loading control
         this.overlayContent.image.alt = currentUnlock.title;
         
         // Use preloaded image if available (for instant display)
@@ -344,10 +343,8 @@ export class UnlockTest {
             this.overlayContent.image.style.opacity = '1';
         } else {
             console.log('⏳ Image not preloaded yet:', currentUnlock.image);
-            // Fade in when loaded
-            this.overlayContent.image.onload = () => {
-                this.overlayContent.image.style.opacity = '1';
-            };
+            // Keep image hidden until fully loaded
+            this.overlayContent.image.style.opacity = '0';
         }
         
         // Start animations
@@ -398,16 +395,29 @@ export class UnlockTest {
         
         if (this.preloadedImages[currentUnlock.image]) {
             // Image is ready, start animation immediately
+            console.log('✅ Using preloaded image, starting animation immediately');
             this.startContentAnimation();
         } else {
             // Image not ready, wait for it then start animation
             console.log('⏳ Waiting for image to load before starting animation...');
-            this.overlayContent.image.onload = () => {
-                console.log('✅ Image loaded, starting animation');
+            
+            // Create a new Image object to ensure proper loading
+            const tempImage = new Image();
+            tempImage.onload = () => {
+                console.log('✅ Image fully loaded, starting animation');
+                // Now set the actual image source and start animation
+                this.overlayContent.image.src = currentUnlock.image;
+                this.overlayContent.image.style.opacity = '1';
                 this.startContentAnimation();
             };
-            // Set the image source to trigger loading
-            this.overlayContent.image.src = currentUnlock.image;
+            tempImage.onerror = () => {
+                console.error('❌ Failed to load image:', currentUnlock.image);
+                // Fallback: start animation anyway
+                this.overlayContent.image.src = currentUnlock.image;
+                this.startContentAnimation();
+            };
+            // Start loading the image
+            tempImage.src = currentUnlock.image;
         }
     }
 
