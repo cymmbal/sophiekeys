@@ -125,17 +125,6 @@ export class UnlockTest {
         // Start unlock sequence immediately
         this.unlockSequenceStarted = true;
 
-        // Prevent initial auto-rotation when unlocks are present
-        if (this.gemPlayer.rotationControl) {
-            // Clear any existing auto-rotation timers
-            if (this.gemPlayer.rotationControl.autoControlsTimer) {
-                clearTimeout(this.gemPlayer.rotationControl.autoControlsTimer);
-                this.gemPlayer.rotationControl.autoControlsTimer = null;
-            }
-            // Stop any ongoing auto-rotation
-            this.gemPlayer.rotationControl.isAutoRotating = false;
-        }
-
         // Initialize unlock configuration and overlay
         this.init();
     }
@@ -204,26 +193,6 @@ export class UnlockTest {
             this.fadeInButton();
             this.animateMessageAndButton();
         }, 200);
-        
-        // Delay auto-rotation until after button animation completes
-        const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
-        const buttonDelay = isFinalUnlock ? 13000 : 4000;
-        const buttonAnimationDuration = 1000; // 1 second for fade-in animation
-        const totalDelay = buttonDelay + buttonAnimationDuration + 500; // Extra 500ms buffer
-        
-        // Stop any existing auto-rotation and delay it
-        if (this.gemPlayer.rotationControl) {
-            // Clear any existing timers
-            if (this.gemPlayer.rotationControl.autoControlsTimer) {
-                clearTimeout(this.gemPlayer.rotationControl.autoControlsTimer);
-                this.gemPlayer.rotationControl.autoControlsTimer = null;
-            }
-            
-            // Start auto-rotation after button animation completes
-            this.gemPlayer.rotationControl.autoControlsTimer = setTimeout(() => {
-                this.gemPlayer.rotationControl.startAutoRotation();
-            }, totalDelay);
-        }
     }
 
     fadeInButton() {
@@ -456,25 +425,6 @@ export class UnlockTest {
                     setTimeout(() => {
                         this.fadeInButton();
                         this.animateMessageAndButton();
-                        
-                        // Delay auto-rotation until after next button animation completes
-                        const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
-                        const buttonDelay = isFinalUnlock ? 13000 : 4000;
-                        const buttonAnimationDuration = 1000; // 1 second for fade-in animation
-                        const totalDelay = buttonDelay + buttonAnimationDuration + 500; // Extra 500ms buffer
-                        
-                        // Clear any existing auto-rotation and delay it
-                        if (this.gemPlayer.rotationControl) {
-                            if (this.gemPlayer.rotationControl.autoControlsTimer) {
-                                clearTimeout(this.gemPlayer.rotationControl.autoControlsTimer);
-                                this.gemPlayer.rotationControl.autoControlsTimer = null;
-                            }
-                            
-                            // Start auto-rotation after button animation completes
-                            this.gemPlayer.rotationControl.autoControlsTimer = setTimeout(() => {
-                                this.gemPlayer.rotationControl.startAutoRotation();
-                            }, totalDelay);
-                        }
                     }, delay);
                 }
             }
