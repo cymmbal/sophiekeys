@@ -20,7 +20,7 @@ export class RotationControl {
             threshold: options.threshold || 0.001,
             autoOrientationDelay: options.autoOrientationDelay || 1000,
             autoOrientationDuration: options.autoOrientationDuration || 2000,
-            autoRotationDelay: options.autoRotationDelay || 1000,
+            autoRotationDelay: options.autoRotationDelay || 2000,
             autoRotationSpeed: options.autoRotationSpeed || 0.001,
             invertRotation: options.invertRotation || false
         };

@@ -19,7 +19,7 @@
             "callback": "unlockPhase3"
         },
 		{
-            "message": "Surprise easter eggs can unlock unexpected elements.",
+            "message": "Surprise easter eggs can unlock new elements.",
 			"buttonLabel" : "See Level 3",
             "heading": "FOUND SPECIAL LOCATION",
             "image": "./assets/unlocks/sophie-heaven.jpg",
