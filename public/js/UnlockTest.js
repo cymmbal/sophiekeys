@@ -145,23 +145,56 @@ export class UnlockTest {
 
                     // Preload all unlock images immediately
         console.log('🚀 Starting image preload for', this.unlockConfig.unlocks.length, 'images...');
-        this.unlockConfig.unlocks.forEach((unlock, index) => {
-            const img = new Image();
-            img.onload = () => {
-                this.preloadedImages[unlock.image] = img;
-                console.log(`✅ Preloaded ${index + 1}/${this.unlockConfig.unlocks.length}: ${unlock.image}`);
+        console.log('🌐 Browser:', navigator.userAgent.includes('Chrome') ? 'Chrome' : 'Other');
+        
+        // Force Chrome to be more aggressive about preloading
+        const preloadPromises = this.unlockConfig.unlocks.map((unlock, index) => {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => {
+                    this.preloadedImages[unlock.image] = img;
+                    console.log(`✅ Preloaded ${index + 1}/${this.unlockConfig.unlocks.length}: ${unlock.image}`);
+                    resolve(unlock.image);
+                };
+                img.onerror = () => {
+                    console.error(`❌ Failed to preload: ${unlock.image}`);
+                    reject(unlock.image);
+                };
+                // Start loading immediately
+                img.src = unlock.image;
+            });
+        });
+        
+        // Wait for all images to preload and log completion
+        Promise.allSettled(preloadPromises).then((results) => {
+            const successful = results.filter(r => r.status === 'fulfilled').length;
+            const failed = results.filter(r => r.status === 'rejected').length;
+            console.log(`🎉 Preloading complete: ${successful} successful, ${failed} failed`);
+            
+            // Chrome-specific: Force images to be cached by briefly displaying them
+            if (navigator.userAgent.includes('Chrome')) {
+                console.log('🔧 Chrome detected - forcing image cache...');
+                const tempContainer = document.createElement('div');
+                tempContainer.style.position = 'absolute';
+                tempContainer.style.left = '-9999px';
+                tempContainer.style.top = '-9999px';
+                tempContainer.style.width = '1px';
+                tempContainer.style.height = '1px';
+                tempContainer.style.overflow = 'hidden';
                 
-                // Log when all images are preloaded
-                const preloadedCount = Object.keys(this.preloadedImages).length;
-                if (preloadedCount === this.unlockConfig.unlocks.length) {
-                    console.log('🎉 All images preloaded successfully!');
-                }
-            };
-            img.onerror = () => {
-                console.error(`❌ Failed to preload: ${unlock.image}`);
-            };
-            // Start loading immediately
-            img.src = unlock.image;
+                Object.values(this.preloadedImages).forEach(img => {
+                    const clone = img.cloneNode();
+                    clone.style.width = '1px';
+                    clone.style.height = '1px';
+                    tempContainer.appendChild(clone);
+                });
+                
+                document.body.appendChild(tempContainer);
+                setTimeout(() => {
+                    document.body.removeChild(tempContainer);
+                    console.log('✅ Chrome cache forcing complete');
+                }, 100);
+            }
         });
 
             // Create overlay
