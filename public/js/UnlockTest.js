@@ -144,12 +144,18 @@ export class UnlockTest {
             }
 
                     // Preload all unlock images immediately
-        console.log('Starting image preload for', this.unlockConfig.unlocks.length, 'images...');
+        console.log('🚀 Starting image preload for', this.unlockConfig.unlocks.length, 'images...');
         this.unlockConfig.unlocks.forEach((unlock, index) => {
             const img = new Image();
             img.onload = () => {
                 this.preloadedImages[unlock.image] = img;
                 console.log(`✅ Preloaded ${index + 1}/${this.unlockConfig.unlocks.length}: ${unlock.image}`);
+                
+                // Log when all images are preloaded
+                const preloadedCount = Object.keys(this.preloadedImages).length;
+                if (preloadedCount === this.unlockConfig.unlocks.length) {
+                    console.log('🎉 All images preloaded successfully!');
+                }
             };
             img.onerror = () => {
                 console.error(`❌ Failed to preload: ${unlock.image}`);
@@ -264,7 +270,7 @@ export class UnlockTest {
         
         const image = document.createElement('img');
         image.className = 'unlock-image';
-        image.src = this.unlockConfig.unlocks[this.unlockState].image;
+        // Don't set src here - we'll set it when we're ready to display
         image.alt = this.unlockConfig.unlocks[this.unlockState].title;
         
         imageContainer.appendChild(particleCanvas);
@@ -390,34 +396,25 @@ export class UnlockTest {
         // Trigger reflow
         this.overlay.offsetHeight;
         
-        // Check if image is preloaded, if not wait for it before starting animation
+        // Set image source and start animation
         const currentUnlock = this.unlockConfig.unlocks[this.unlockState];
         
+        // Set the image source (should be preloaded by now)
+        this.overlayContent.image.src = currentUnlock.image;
+        
         if (this.preloadedImages[currentUnlock.image]) {
-            // Image is ready, start animation immediately
+            // Image is preloaded, start animation immediately
             console.log('✅ Using preloaded image, starting animation immediately');
+            this.overlayContent.image.style.opacity = '1';
             this.startContentAnimation();
         } else {
-            // Image not ready, wait for it then start animation
-            console.log('⏳ Waiting for image to load before starting animation...');
-            
-            // Create a new Image object to ensure proper loading
-            const tempImage = new Image();
-            tempImage.onload = () => {
-                console.log('✅ Image fully loaded, starting animation');
-                // Now set the actual image source and start animation
-                this.overlayContent.image.src = currentUnlock.image;
+            // Image not preloaded (shouldn't happen, but fallback)
+            console.log('⚠️ Image not preloaded, waiting for load...');
+            this.overlayContent.image.onload = () => {
+                console.log('✅ Image loaded, starting animation');
                 this.overlayContent.image.style.opacity = '1';
                 this.startContentAnimation();
             };
-            tempImage.onerror = () => {
-                console.error('❌ Failed to load image:', currentUnlock.image);
-                // Fallback: start animation anyway
-                this.overlayContent.image.src = currentUnlock.image;
-                this.startContentAnimation();
-            };
-            // Start loading the image
-            tempImage.src = currentUnlock.image;
         }
     }
 
