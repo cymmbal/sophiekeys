@@ -367,21 +367,21 @@ gem-player {
 @keyframes flip-in-y {
     0% {
         opacity: 0;
-        transform: rotateY(90deg) scale(0.8);
-    }
-    40% {
-        opacity: 1;
-        transform: rotateY(-20deg) scale(1.3);
+        transform: rotateY(90deg);
     }
     60% {
-        transform: rotateY(10deg) scale(1.1);
+        opacity: 1;
+        transform: rotateY(-30deg) scale(1.5);
     }
     80% {
-        transform: rotateY(-5deg) scale(1.05);
+        transform: rotateY(15deg);
+    }
+    90% {
+        transform: rotateY(-7deg);
     }
     100% {
         opacity: 1;
-        transform: rotateY(0deg) scale(1);
+        transform: rotateY(0deg);
     }
 }
 
