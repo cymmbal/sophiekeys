@@ -7,6 +7,16 @@ body, html {
     font-size: 16px;
     background-color: #433D37;
     color: #f0f0f0;
+    /* Prevent mobile scrolling/dragging */
+    position: fixed;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 gem-player {
