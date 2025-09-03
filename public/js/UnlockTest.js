@@ -123,7 +123,7 @@ export class UnlockTest {
         this.preloadedImages = {};  // Store preloaded images
         
         // Animation timing configuration
-        this.fadeInDuration = '2.0s';
+        this.fadeInDuration = '1.0s';
         
         // Start unlock sequence immediately
         this.unlockSequenceStarted = true;
@@ -408,7 +408,7 @@ export class UnlockTest {
     }
 
     handleUnlock() {
-        // Update overlay content based on current state
+        // Update overlay content based on current state BEFORE showing the modal
         this.updateOverlayContent();
         
         // Remove button container when modal appears
@@ -430,9 +430,17 @@ export class UnlockTest {
             this.gemPlayer.rotationControl.resetToFront();
         }
         
-        // Show overlay
+        // IMPORTANT: Set image source BEFORE showing the overlay to prevent flash
+        const currentUnlock = this.unlockConfig.unlocks[this.unlockState];
+        this.overlayContent.image.src = currentUnlock.image;
+        
+        // Show overlay with a small delay to ensure content is fully updated
         this.overlay.style.display = 'block';
-        this.overlay.style.opacity = '1';
+        
+        // Small delay to ensure content is fully updated before showing
+        setTimeout(() => {
+            this.overlay.style.opacity = '1';
+        }, 50);
         
         // Start with content transparent
         this.overlayContent.heading.style.opacity = '0';
@@ -442,12 +450,6 @@ export class UnlockTest {
         
         // Trigger reflow
         this.overlay.offsetHeight;
-        
-        // Set image source and start animation
-        const currentUnlock = this.unlockConfig.unlocks[this.unlockState];
-        
-        // Set the image source (should be preloaded by now)
-        this.overlayContent.image.src = currentUnlock.image;
         
         if (this.preloadedImages[currentUnlock.image]) {
             // Image is preloaded, start animation immediately

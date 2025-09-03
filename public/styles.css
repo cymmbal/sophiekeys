@@ -207,7 +207,7 @@ gem-player {
     backdrop-filter: blur(20px);
     display: none;
     opacity: 0;
-    transition: opacity 0.35s ease;
+    transition: opacity .3s ease;
     z-index: 200;
     cursor: pointer;
 }
