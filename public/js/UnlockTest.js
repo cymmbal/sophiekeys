@@ -476,11 +476,25 @@ export class UnlockTest {
         setTimeout(() => {
             this.overlay.style.display = 'none';
             const currentUnlock = this.unlockConfig.unlocks[this.unlockState];
-            // Handle URL navigation if specified
+            
+            // Check if this is the final unlock step
+            const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
+            
+            if (isFinalUnlock) {
+                // Final step: restart the demo by reloading the page
+                console.log('Final unlock reached - restarting demo...');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000); // 1 second delay before restart
+                return;
+            }
+            
+            // Handle URL navigation if specified (for non-final steps)
             if (currentUnlock.url) {
                 window.location.href = currentUnlock.url;
                 return;
             }
+            
             // Otherwise handle gem animation as before
             if (this.gemPlayer.spline) {
                 this.gemPlayer.spline.setVariable(currentUnlock.callback, true);
@@ -549,11 +563,25 @@ export class UnlockTest {
             // Add click handler
             this.button.addEventListener('click', () => {
                 const currentUnlock = this.unlockConfig.unlocks[this.unlockState];
-                // Handle URL navigation immediately if specified
+                
+                // Check if this is the final unlock step
+                const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
+                
+                if (isFinalUnlock) {
+                    // Final step: restart the demo by reloading the page
+                    console.log('Final unlock reached via button click - restarting demo...');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000); // 1 second delay before restart
+                    return;
+                }
+                
+                // Handle URL navigation if specified (for non-final steps)
                 if (currentUnlock.url) {
                     window.location.href = currentUnlock.url;
                     return;
                 }
+                
                 // Mixpanel event tracking for every unlock
                 if (typeof mixpanel !== 'undefined' && mixpanel.track) {
                     const eventName = `sophie${this.unlockState + 1}`;
@@ -699,7 +727,20 @@ export class UnlockTest {
                 // If button container is visible, trigger the unlock
                 // This works whether there's a visible button or not
                 console.log('Triggering unlock with keyboard...');
-                this.handleUnlock();
+                
+                // Check if this is the final unlock step
+                const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
+                
+                if (isFinalUnlock) {
+                    // Final step: restart the demo by reloading the page
+                    console.log('Final unlock reached via keyboard - restarting demo...');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000); // 1 second delay before restart
+                } else {
+                    // Normal unlock flow
+                    this.handleUnlock();
+                }
             } else {
                 console.log('No action taken - neither overlay nor button is in actionable state');
             }
