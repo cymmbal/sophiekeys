@@ -21,8 +21,8 @@
 		{
             "message": "",
 			"buttonLabel" : "",
-            "heading": "FOUND HEAVENS ALLEY",
-            "image": "./assets/unlocks/sophie-heaven.jpg",
+            "heading": "FOUND HEAVEN",
+            "image": "./assets/unlocks/heaven.jpg",
             "title": "",
 			"description": "",
             "callback": "unlockPhase4"
@@ -39,8 +39,8 @@
 		{
 			"message": "",
 			"buttonLabel" : "",
-            "heading": "500 ALBUM PLAYS",
-            "image": "./assets/unlocks/spot.jpg",
+            "heading": "",
+            "image": "./assets/unlocks/product-sharing.png",
             "title": "",
 			"description": "",
             "callback": "unlockPhase6"
