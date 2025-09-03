@@ -37,7 +37,6 @@ export class RotationControl {
         this.isAutoOrienting = false;
         this.isAutoRotating = false;
         this.originalRotation = { x: 0, y: 0, z: 0 };
-
         this.init();
     }
 
@@ -106,6 +105,8 @@ export class RotationControl {
         }
         this.isAutoOrienting = false;
         this.isAutoRotating = false;
+
+
 
         // Dispatch event for other controls
         this.canvas.dispatchEvent(new CustomEvent('rotationstart'));
@@ -515,4 +516,5 @@ export class RotationControl {
             this.startAutoRotation();
         }, this.options.autoRotationDelay);
     }
+
 } 

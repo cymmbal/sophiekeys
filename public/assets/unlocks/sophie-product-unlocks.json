@@ -1,53 +1,53 @@
 {
     "unlocks": [
         {
-			"message": "<b>Your Gem evolves based on your experiences.</b><br>Tap through all 5 levels to see how.",
-			"buttonLabel" : "See Level 1",
-            "heading": "LISTENED FOR 1,000 MINUTES",
-            "image": "./assets/unlocks/applemusic.jpg",
-            "title": "Streaming PRODUCT unlocks a new element for your Gem",
-			"description": "👉 See what you unlocked",
+			"message": "",
+			"buttonLabel" : "",
+            "heading": "100 ALBUM PLAYS",
+            "image": "./assets/unlocks/lemonade.jpg",
+            "title": "",
+			"description": "",
             "callback": "unlockPhase2"
         },
 		{
-			"message": "Real-world experiences can evolve your Gem too.",
-			"buttonLabel" : "See Level 2",
+			"message": "",
+			"buttonLabel" : "",
             "heading": "FOUND HIDDEN OBJECT",
             "image": "./assets/unlocks/sophie-shop.jpg",
-            "title": "Finding the hidden pool toy at Honest Jon's unlocks a rare element",
-			"description": "👉 See what you unlocked",
+            "title": "",
+			"description": "",
             "callback": "unlockPhase3"
         },
 		{
-            "message": "Surprise easter eggs can unlock new elements.",
-			"buttonLabel" : "See Level 3",
-            "heading": "FOUND SPECIAL LOCATION",
+            "message": "",
+			"buttonLabel" : "",
+            "heading": "FOUND HEAVENS ALLEY",
             "image": "./assets/unlocks/sophie-heaven.jpg",
-            "title": "Visiting Heaven's alley with friends unlocks a surprise element for each of you",
-			"description": "👉 See what you unlocked",
+            "title": "",
+			"description": "",
             "callback": "unlockPhase4"
         },
 		{
-			"message": "Fans can work together on community listening.",
-			"buttonLabel" : "See Level 4",
-            "heading": "1 MILLION COMMUNITY STREAMS",
-            "image": "./assets/unlocks/allslides.jpg",
-            "title": "Owning the Gem during this milestone unlocks a limited element",
-			"description": "👉 See what you unlocked",
+			"message": "",
+			"buttonLabel" : "",
+            "heading": "1 MILLION COMMUNITY PLAYS",
+            "image": "./assets/unlocks/productpics.jpg",
+            "title": "",
+			"description": "",
             "callback": "unlockPhase5"
         },
 		{
-			"message": "Piece by piece, a Gem becomes increasingly personal to its collector.",
-			"buttonLabel" : "See Level 5",
-            "heading": "SECRET ELEMENT UNLOCKED",
-            "image": "./assets/unlocks/silicon.jpg",
-            "title": "Unlocking multiple elements reveals a secret bonus",
-			"description": "✨ View full Gem",
+			"message": "",
+			"buttonLabel" : "",
+            "heading": "500 ALBUM PLAYS",
+            "image": "./assets/unlocks/spot.jpg",
+            "title": "",
+			"description": "",
             "callback": "unlockPhase6"
         },
         {
-            "message": "In the end, your Gem tells your story with the album.",
-            "buttonLabel": "Restart demo",
+            "message": "",
+            "buttonLabel": "",
             "url": "https://docsend.com/view/7a9j6fysyke67udu"
         }
     ]

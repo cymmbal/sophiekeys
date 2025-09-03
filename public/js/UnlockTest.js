@@ -128,6 +128,10 @@ export class UnlockTest {
         // Start unlock sequence immediately
         this.unlockSequenceStarted = true;
 
+        // Add keyboard event listener for right arrow key navigation
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        document.addEventListener('keydown', this.handleKeyDown);
+
         // Initialize unlock configuration and overlay
         this.init();
     }
@@ -240,6 +244,9 @@ export class UnlockTest {
         setTimeout(() => {
             this.fadeInButton();
             this.animateMessageAndButton();
+            
+            // Show keyboard hint briefly
+            this.showKeyboardHint();
         }, 200);
     }
 
@@ -254,26 +261,33 @@ export class UnlockTest {
             this.message.style.transform = 'rotateY(90deg)';
             this.message.style.animation = 'none';
 
-            this.button.style.opacity = '0';
-            this.button.style.animation = 'none';
-
             // --- Force reflow ---
             void this.message.offsetWidth;
-            void this.button.offsetWidth;
 
             // --- Start message animation ---
             this.message.style.animation = 'flip-in-y 4s ease-in-out forwards';
 
-            // Check if this is the final unlock (last one in the array)
-            const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
-            
-            // Use longer delay for final unlock button, normal delay for others
-            const buttonDelay = isFinalUnlock ? 13000 : 4000;
+            // Only animate button if it exists
+            if (this.button) {
+                this.button.style.opacity = '0';
+                this.button.style.animation = 'none';
+                
+                // --- Force reflow for button ---
+                void this.button.offsetWidth;
 
-            // --- Start button animation ---
-            setTimeout(() => {
-                this.button.style.animation = 'fade-in 1s ease-out forwards';
-            }, buttonDelay);
+                // Check if this is the final unlock (last one in the array)
+                const isFinalUnlock = this.unlockState === this.unlockConfig.unlocks.length - 1;
+                
+                // Use longer delay for final unlock button, normal delay for others
+                const buttonDelay = isFinalUnlock ? 13000 : 4000;
+
+                // --- Start button animation ---
+                setTimeout(() => {
+                    if (this.button) { // Check again in case button was removed
+                        this.button.style.animation = 'fade-in 1s ease-out forwards';
+                    }
+                }, buttonDelay);
+            }
         }
     }
 
@@ -365,7 +379,7 @@ export class UnlockTest {
         this.overlayContent.title.textContent = title;
         
         // Update description: if 'Next unlock', '✨ View full Gem', or 'See what you unlocked', style as fake button
-        if (currentUnlock.description === 'Next unlock' || currentUnlock.description === '✨ View full Gem' || currentUnlock.description === '👉 See what you unlocked') {
+        if (currentUnlock.description === 'Next unlock' || currentUnlock.description === '✨ View full Gem' || currentUnlock.description === ' ') {
             this.overlayContent.description.className = 'unlock-description unlock-fake-button';
             this.overlayContent.description.innerHTML = currentUnlock.description;
         } else {
@@ -519,33 +533,41 @@ export class UnlockTest {
         this.message.style.color = bodyColor;
         this.buttonContainer.appendChild(this.message);
 
-        // Create button element
-        this.button = document.createElement('button');
-        this.button.textContent = this.unlockConfig.unlocks[this.unlockState].buttonLabel;
-        this.button.classList.add('unlock-button');
-        // Set initial hidden state BEFORE appending
-        this.button.style.opacity = '0';
-        this.button.style.animation = 'none';
-        // Apply dynamic font color and background from body element
-        this.button.style.color = bodyColor;
-        this.button.style.backgroundColor = buttonBackground;
-        // Add click handler
-        this.button.addEventListener('click', () => {
-            const currentUnlock = this.unlockConfig.unlocks[this.unlockState];
-            // Handle URL navigation immediately if specified
-            if (currentUnlock.url) {
-                window.location.href = currentUnlock.url;
-                return;
-            }
-            // Mixpanel event tracking for every unlock
-            if (typeof mixpanel !== 'undefined' && mixpanel.track) {
-                const eventName = `sophie${this.unlockState + 1}`;
-                mixpanel.track(eventName);
-            }
-            this.handleUnlock();
-        });
-        // Add button to container
-        this.buttonContainer.appendChild(this.button);
+        // Only create button if there's a buttonLabel
+        const buttonLabel = this.unlockConfig.unlocks[this.unlockState].buttonLabel;
+        if (buttonLabel && buttonLabel.trim() !== '') {
+            // Create button element
+            this.button = document.createElement('button');
+            this.button.textContent = buttonLabel;
+            this.button.classList.add('unlock-button');
+            // Set initial hidden state BEFORE appending
+            this.button.style.opacity = '0';
+            this.button.style.animation = 'none';
+            // Apply dynamic font color and background from body element
+            this.button.style.color = bodyColor;
+            this.button.style.backgroundColor = buttonBackground;
+            // Add click handler
+            this.button.addEventListener('click', () => {
+                const currentUnlock = this.unlockConfig.unlocks[this.unlockState];
+                // Handle URL navigation immediately if specified
+                if (currentUnlock.url) {
+                    window.location.href = currentUnlock.url;
+                    return;
+                }
+                // Mixpanel event tracking for every unlock
+                if (typeof mixpanel !== 'undefined' && mixpanel.track) {
+                    const eventName = `sophie${this.unlockState + 1}`;
+                    mixpanel.track(eventName);
+                }
+                this.handleUnlock();
+            });
+            // Add button to container
+            this.buttonContainer.appendChild(this.button);
+        } else {
+            // No button label, so no button element
+            this.button = null;
+        }
+        
         // Add container to the gem player
         this.gemPlayer.appendChild(this.buttonContainer);
     }
@@ -563,6 +585,9 @@ export class UnlockTest {
             this.overlay.parentNode.removeChild(this.overlay);
             this.overlay = null;
         }
+        
+        // Remove keyboard event listener
+        document.removeEventListener('keydown', this.handleKeyDown);
     }
 
     // Helper function to get day suffix (1st, 2nd, 3rd, etc)
@@ -587,6 +612,47 @@ export class UnlockTest {
     }
 
     /**
+     * Show a brief keyboard hint to let users know they can use arrow keys
+     */
+    showKeyboardHint() {
+        // Create hint element
+        const hint = document.createElement('div');
+        hint.textContent = '→ Use right arrow key to advance';
+        hint.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        `;
+        
+        document.body.appendChild(hint);
+        
+        // Fade in
+        setTimeout(() => {
+            hint.style.opacity = '1';
+        }, 100);
+        
+        // Fade out and remove after 3 seconds
+        setTimeout(() => {
+            hint.style.opacity = '0';
+            setTimeout(() => {
+                if (hint.parentNode) {
+                    hint.parentNode.removeChild(hint);
+                }
+            }, 300);
+        }, 3000);
+    }
+
+    /**
      * Calculate button background color based on page background brightness
      */
     calculateButtonBackground(bodyBackground) {
@@ -608,6 +674,35 @@ export class UnlockTest {
             return 'rgba(255, 255, 255, 0.1)'; // Light background for dark pages
         } else {
             return 'rgba(0, 0, 0, 0.1)'; // Dark background for light pages
+        }
+    }
+
+    /**
+     * Handle keyboard navigation - right arrow key moves to next unlock
+     */
+    handleKeyDown(event) {
+        // Only respond to right arrow key
+        if (event.key === 'ArrowRight') {
+            console.log('Right arrow pressed - checking unlock state...');
+            console.log('Overlay visible:', this.overlay && this.overlay.style.display === 'block');
+            console.log('Button container visible:', this.buttonContainer && this.buttonContainer.style.display === 'flex');
+            console.log('Button exists:', !!this.button);
+            console.log('Current unlock state:', this.unlockState);
+            console.log('Total unlocks:', this.unlockConfig ? this.unlockConfig.unlocks.length : 'N/A');
+            
+            // Check if we're currently showing an overlay (unlock modal)
+            if (this.overlay && this.overlay.style.display === 'block') {
+                console.log('Closing overlay with keyboard...');
+                // Close the current overlay to move to next unlock
+                this.handleOverlayClose();
+            } else if (this.buttonContainer && this.buttonContainer.style.display === 'flex') {
+                // If button container is visible, trigger the unlock
+                // This works whether there's a visible button or not
+                console.log('Triggering unlock with keyboard...');
+                this.handleUnlock();
+            } else {
+                console.log('No action taken - neither overlay nor button is in actionable state');
+            }
         }
     }
 } 
