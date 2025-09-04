@@ -244,9 +244,6 @@ export class UnlockTest {
         setTimeout(() => {
             this.fadeInButton();
             this.animateMessageAndButton();
-            
-            // Show keyboard hint briefly
-            this.showKeyboardHint();
         }, 200);
     }
 
@@ -641,46 +638,7 @@ export class UnlockTest {
         this.overlayContent.description.style.animation = `fade-in ${this.fadeInDuration} ease-out forwards`;
     }
 
-    /**
-     * Show a brief keyboard hint to let users know they can use arrow keys
-     */
-    showKeyboardHint() {
-        // Create hint element
-        const hint = document.createElement('div');
-        hint.textContent = '→ Use right arrow key to advance';
-        hint.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            z-index: 10000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        `;
-        
-        document.body.appendChild(hint);
-        
-        // Fade in
-        setTimeout(() => {
-            hint.style.opacity = '1';
-        }, 100);
-        
-        // Fade out and remove after 3 seconds
-        setTimeout(() => {
-            hint.style.opacity = '0';
-            setTimeout(() => {
-                if (hint.parentNode) {
-                    hint.parentNode.removeChild(hint);
-                }
-            }, 300);
-        }, 3000);
-    }
+
 
     /**
      * Calculate button background color based on page background brightness

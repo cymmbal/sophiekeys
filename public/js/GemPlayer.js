@@ -70,7 +70,7 @@ export class GemPlayer extends HTMLElement {
 		AUTO_ROTATION_DELAY: 1500,
 
 		// Speed of auto-rotation (if 0, auto-rotation is disabled)
-		AUTO_ROTATION_SPEED: -0.002,
+		AUTO_ROTATION_SPEED: -0.0025,
 		
 		// Speed of auto-rotation for mobile devices (if 0, auto-rotation is disabled)
 		MOBILE_AUTO_ROTATION_SPEED: -0.0014,
